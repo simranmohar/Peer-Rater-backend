@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class Survey extends Model
 {
@@ -12,4 +14,8 @@ class Survey extends Model
     protected $fillable = [
         'peer_group_id'
     ];
+
+    public function categories() {
+        return $this->hasMany(Category::class);
+    }
 }

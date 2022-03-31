@@ -10,6 +10,10 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'peer_group_id'
+    ];
+
     public function survey() {
         return $this->belongsTo(Survey::class);
     }

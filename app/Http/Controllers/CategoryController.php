@@ -37,8 +37,6 @@ class CategoryController extends Controller
         $category->peer_group_id = $request->input('peer_group_id');
         $category->survey_id = $request->input('survey_id');
         $category->description = $request->input('description');
-        // $category->survey()->associate($survey);
-        /* Above commented out for now */
         $category->save();
 
         return response()->json([

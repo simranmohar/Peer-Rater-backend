@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeerGroupController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RatingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,16 @@ Route::get('/categories/{category}', [CategoryController::class, 'show'])->name(
 Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+Route::get('/ratings', [RatingController::class, 'index'])->name('ratings.index');
+
+Route::post('/ratings', [RatingController::class, 'store'])->name('ratings.store');
+
+Route::get('/ratings/{rating}', [RatingController::class, 'show'])->name('ratings.show');
+
+Route::put('/ratings/{rating}', [RatingController::class, 'update'])->name('ratings.update');
+
+Route::delete('/ratings/{rating}', [RatingController::class, 'destroy'])->name('ratings.destroy');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Survey;
 
 class Rating extends Model
 {
@@ -16,4 +17,8 @@ class Rating extends Model
         'survey_id',
         'rating'
     ];
+
+    public function survey() {
+        return $this->belongsTo(Survey::class);
+    }
 }

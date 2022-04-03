@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Survey;
+use App\Models\PeerGroup;
 
 class RatingController extends Controller
 {
@@ -13,9 +15,9 @@ class RatingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PeerGroup $peerGroup, Survey $survey)
     {
-        $ratings = Rating::all();
+        $ratings = $survey->ratings()->get();
 
         return response()->json($ratings);
     }
@@ -26,13 +28,11 @@ class RatingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, PeerGroup $peerGroup, Survey $survey)
     {
         $request->validate([
             'recipient_id' => 'required',
             'category_id' => 'required',
-            'peer_group_id' => 'required',
-            'survey_id' => 'required',
             'rating' => 'required'
         ]);
 
@@ -42,8 +42,8 @@ class RatingController extends Controller
         $rating->writer_id = $user->id;
         $rating->recipient_id = $request->input('recipient_id');
         $rating->category_id = $request->input('category_id');
-        $rating->peer_group_id = $request->input('peer_group_id');
-        $rating->survey_id = $request->input('survey_id');
+        $rating->peer_group_id = $peerGroup->id;
+        $rating->survey_id = $survey->id;
         $rating->rating = $request->input('rating');
 
         $rating->save();
@@ -60,7 +60,7 @@ class RatingController extends Controller
      * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function show(Rating $rating)
+    public function show(PeerGroup $peerGroup, Survey $survey, Rating $rating)
     {
         return $rating;
     }
@@ -72,7 +72,7 @@ class RatingController extends Controller
      * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rating $rating)
+    public function update(Request $request, PeerGroup $peerGroup, Survey $survey, Rating $rating)
     {
         $request->validate([
             'recipient' => 'nullable',
@@ -96,7 +96,7 @@ class RatingController extends Controller
      * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rating $rating)
+    public function destroy(PeerGroup $peerGroup, Survey $survey, Rating $rating)
     {
         $rating->delete();
 

@@ -13,6 +13,7 @@ class AuthController extends Controller
              'email'    => $request->email,
              'password' => $request->password,
              'name' => $request->name,
+             'isInstructor' => $request->has('isInstructor'),
          ]);
 
         $token = auth()->login($user);

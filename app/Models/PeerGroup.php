@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Survey;
 
 class PeerGroup extends Model
 {
@@ -15,5 +16,10 @@ class PeerGroup extends Model
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function surveys()
+    {
+        return $this->hasMany(Survey::class);
     }
 }

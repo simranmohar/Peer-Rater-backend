@@ -41,15 +41,7 @@ Route::post('/peer-groups/{peerGroup}/attach', [PeerGroupController::class, 'att
 
 Route::post('/peer-groups/{peerGroup}/detach', [PeerGroupController::class, 'detach'])->name('peer_groups.detach');
 
-Route::get('/surveys', [SurveyController::class, 'index'])->name('surveys.index');
-
-Route::post('/surveys', [SurveyController::class, 'store'])->name('surveys.store');
-
-Route::get('/surveys/{survey}', [SurveyController::class, 'show'])->name('surveys.show');
-
-Route::put('/surveys/{survey}', [SurveyController::class, 'update'])->name('surveys.update');
-
-Route::delete('/surveys/{survey}', [SurveyController::class, 'destroy'])->name('surveys.destroy');
+Route::resource('peer-groups.surveys', SurveyController::class);
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\PeerGroup;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
@@ -14,6 +15,11 @@ class Survey extends Model
     protected $fillable = [
         'peer_group_id'
     ];
+
+    public function peerGroup()
+    {
+        return $this->belongsTo(PeerGroup::class);
+    }
 
     public function categories() {
         return $this->hasMany(Category::class);

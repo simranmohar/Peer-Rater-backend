@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PeerGroup;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,12 @@ class SurveyController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Models\PeerGroup  $peerGroup
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PeerGroup $peerGroup)
     {
-        $surveys = Survey::all();
+        $surveys = $peerGroup->surveys()->get();
 
         return response()->json($surveys);
     }
@@ -23,15 +25,12 @@ class SurveyController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\PeerGroup  $peerGroup
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, PeerGroup $peerGroup)
     {
-        $request->validate([
-            'peer_group_id' => 'required'
-        ]);
-
-        $survey = Survey::create($request->all());
+        $survey = $peerGroup->surveys()->create($request->all());
 
         return response()->json([
             'message' => 'Great success! New survey created',
@@ -42,10 +41,11 @@ class SurveyController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  \App\Models\PeerGroup  $peerGroup
      * @param  \App\Models\Survey  $survey
      * @return \Illuminate\Http\Response
      */
-    public function show(Survey $survey)
+    public function show(PeerGroup $peerGroup, Survey $survey)
     {
         return $survey;
     }
@@ -54,15 +54,12 @@ class SurveyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\PeerGroup  $peerGroup
      * @param  \App\Models\Survey  $survey
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Survey $survey)
+    public function update(Request $request, PeerGroup $peerGroup, Survey $survey)
     {
-        $request->validate([
-           'peer_group_id' => 'nullable'
-        ]);
-
         $survey->update($request->all());
 
         return response()->json([
@@ -74,10 +71,11 @@ class SurveyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \App\Models\PeerGroup  $peerGroup
      * @param  \App\Models\Survey  $survey
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Survey $survey)
+    public function destroy(PeerGroup $peerGroup, Survey $survey)
     {
         $survey->delete();
 

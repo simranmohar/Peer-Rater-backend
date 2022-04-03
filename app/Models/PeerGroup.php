@@ -10,6 +10,8 @@ class PeerGroup extends Model
 {
     use HasFactory;
 
+    protected $with = ['users'];
+
     public function users()
     {
         return $this->belongsToMany(User::class);

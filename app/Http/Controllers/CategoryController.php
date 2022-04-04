@@ -38,7 +38,7 @@ class CategoryController extends Controller
      *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories",
      *      operationId="peer-groups.surveys.categories.store",
      *      tags={"Category"},
-     *      summary="get all categories infomation",
+     *      summary="create a new category",
      *      description="Returns an array contains all the categories infomation",
      *      @OA\Parameter(
      *          name="description",

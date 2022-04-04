@@ -9,11 +9,34 @@ use Illuminate\Support\Facades\Auth;
 
 class PeerGroupController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *      path="/api/peer-groups",
+     * operationId="index",
+     *      tags={"PeerGroup"},
+     *      summary="get the peerGroups for the login user",
+     *      description="Returns the peer groups infomation",
+     *      @OA\Parameter(
+     *          name="description",
+     *          description="peer group description",
+     *          required=true,
+     *          example="New Peer Group 1",
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @return \Illuminate\Http\Response
-     */
+     */    
     public function index()
     {
         $user = Auth::user();
@@ -23,11 +46,44 @@ class PeerGroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *      path="/api/peer-groups",
+     *      operationId="store",
+     *      tags={"PeerGroup"},
+     *      summary="create a new peerGroups and add the login user",
+     *      description="Returns the peer groups infomation",
+     *      @OA\Parameter(
+     *          name="description",
+     *          description="peer group description",
+     *          required=true,
+     *          example="New Peer Group 1",
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
+    //     {
+    //     "message": "Great success! New peer group created",
+    //     "peerGroup": {
+    //         "user_id": 11,
+    //         "description": "peerGroup12",
+    //         "updated_at": "2022-04-04T03:02:29.000000Z",
+    //         "created_at": "2022-04-04T03:02:29.000000Z",
+    //         "id": 68
+    //     }
+    // }
+
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -51,23 +107,73 @@ class PeerGroupController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *      path="/api/peer-groups/{peerGroup}",
+     *      operationId="show",
+     *      tags={"PeerGroup"},
+     *      summary="get the peerGroup infomation",
+     *      description="Returns the peer group infomation",
+     *      @OA\Parameter(
+     *         name="peerGroup",
+     *         in="path",
+     *         description="get peerGroup information by ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @param  \App\Models\PeerGroup  $peerGroup
-     * @return \Illuminate\Http\Response
-     */
+     */   
     public function show(PeerGroup $peerGroup)
     {
         return $peerGroup;
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *      path="/api/peer-groups/{peerGroup}",
+     *      operationId="update",
+     *      tags={"PeerGroup"},
+     *      summary="update the peerGroup infomation",
+     *      description="Returns the peer group infomation",
+     *      @OA\Parameter(
+     *         name="peerGroup",
+     *         in="path",
+     *         description="get peerGroup information by ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *      @OA\Parameter(
+     *         name="description",
+     *         in="path",
+     *         description="get peerGroup information by ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *         )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PeerGroup  $peerGroup
-     * @return \Illuminate\Http\Response
-     */
+     */   
     public function update(Request $request, PeerGroup $peerGroup)
     {
         $request->validate([
@@ -83,10 +189,31 @@ class PeerGroupController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *      path="/api/peer-groups/{peerGroup}",
+     *      operationId="destroy",
+     *      tags={"PeerGroup"},
+     *      summary="delete the peerGroup by peerGroup ID",
+     *      description="Returns the peer group infomation",
+     *      @OA\Parameter(
+     *         name="peerGroup",
+     *         in="path",
+     *         description="get peerGroup information by ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @param  \App\Models\PeerGroup  $peerGroup
-     * @return \Illuminate\Http\Response
      */
     public function destroy(PeerGroup $peerGroup)
     {
@@ -102,10 +229,31 @@ class PeerGroupController extends Controller
     }
 
     /**
-     * attach a exsiting user to a peer group.
+     * @OA\Post(
+     *      path="/api/peer-groups/{peerGroup}/attach",
+     *      operationId="attach",
+     *      tags={"PeerGroup"},
+     *      summary="add current login user to a peerGroup",
+     *      description="Returns the peer group infomation",
+     *      @OA\Parameter(
+     *         name="peerGroup",
+     *         in="path",
+     *         description="get peerGroup information by ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *       @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function attach(Request $request, PeerGroup $peerGroup)
     {
@@ -135,10 +283,31 @@ class PeerGroupController extends Controller
     }
 
     /**
-     * detach a exsiting user to a peer group.
+     * @OA\Post(
+     *      path="/api/peer-groups/{peerGroup}/detach",
+     *      operationId="detach",
+     *      tags={"PeerGroup"},
+     *      summary="remove current login user to a peerGroup",
+     *      description="Returns the peer group infomation",
+     *      @OA\Parameter(
+     *         name="peerGroup",
+     *         in="path",
+     *         description="delete a peerGroup by ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *       @OA\Response(
+     *          response=200,
+     *          description="User not exsits! / Success, User is detached from peer group / Error, User does not exsit in peer group",
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function detach(Request $request, PeerGroup $peerGroup)
     {

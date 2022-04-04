@@ -22,7 +22,7 @@ class PeerGroupController extends Controller
      *          description="peer group description",
      *          required=true,
      *          example="New Peer Group 1",
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="string"
      *          ),
@@ -57,7 +57,7 @@ class PeerGroupController extends Controller
      *          description="peer group description",
      *          required=true,
      *          example="New Peer Group 1",
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="string"
      *          ),
@@ -157,7 +157,7 @@ class PeerGroupController extends Controller
      *     ),
      *      @OA\Parameter(
      *         name="description",
-     *         in="path",
+     *         in="query",
      *         description="get peerGroup information by ID",
      *         required=true,
      *         @OA\Schema(
@@ -245,6 +245,16 @@ class PeerGroupController extends Controller
      *             format="int64"
      *         )
      *     ),
+     *      @OA\Parameter(
+     *         name="user_id",
+     *         in="query",
+     *         description="attach user ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
      *       @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -293,6 +303,16 @@ class PeerGroupController extends Controller
      *         name="peerGroup",
      *         in="path",
      *         description="delete a peerGroup by ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *      @OA\Parameter(
+     *         name="user_id",
+     *         in="query",
+     *         description="detach user ID",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",

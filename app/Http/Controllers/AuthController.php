@@ -19,7 +19,7 @@ class AuthController extends Controller
      *          description="User email",
      *          required=true,
      *          example="user@admin.com",
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="string"
      *          ),
@@ -29,7 +29,7 @@ class AuthController extends Controller
      *          description="User name",
      *          example="PeerRater",
      *          required=true,
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="string"
      *          ),
@@ -39,7 +39,7 @@ class AuthController extends Controller
      *          description="User password",
      *          example="PeerRater",
      *          required=true,
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="string"
      *          ),
@@ -49,7 +49,7 @@ class AuthController extends Controller
      *          description="User access level",
      *          example=true,
      *          required=true,
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="boolean"
      *          ),
@@ -89,7 +89,7 @@ class AuthController extends Controller
      *          description="User email",
      *          required=true,
      *          example="user@admin.com",
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="string"
      *          ),
@@ -99,7 +99,7 @@ class AuthController extends Controller
      *          description="User password",
      *          example="PeerRater",
      *          required=true,
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="string"
      *          ),

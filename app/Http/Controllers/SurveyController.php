@@ -150,7 +150,7 @@ class SurveyController extends Controller
      *     ),
      *      @OA\Parameter(
      *         name="peer_group_id",
-     *         in="path",
+     *         in="query",
      *         description="updated peerGroup ID",
      *         required=true,
      *         @OA\Schema(

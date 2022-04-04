@@ -43,7 +43,7 @@ class CategoryController extends Controller
      *          description="Category description",
      *          required=true,
      *          example="This is a description",
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="string"
      *          ),
@@ -53,7 +53,7 @@ class CategoryController extends Controller
      *          description="Category description",
      *          required=true,
      *          example=12,
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="integer",
      *              format="int64",
@@ -64,7 +64,7 @@ class CategoryController extends Controller
      *          description="Survey description",
      *          required=true,
      *          example=135,
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="integer",
      *              format="int64",
@@ -151,11 +151,22 @@ class CategoryController extends Controller
      *      summary="update a category description",
      *      description="Returns the updated categories infomation",
      *      @OA\Parameter(
+     *          name="category",
+     *          description="category ID",
+     *          required=true,
+     *          example=12,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
      *          name="description",
      *          description="category description",
      *          required=true,
      *          example="This is a description",
-     *          in="path",
+     *          in="query",
      *          @OA\Schema(
      *              type="string"
      *          ),

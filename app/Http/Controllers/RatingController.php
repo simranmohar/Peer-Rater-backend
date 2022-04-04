@@ -64,7 +64,7 @@ class RatingController extends Controller
      *      description="create a new rating by accepting rating content, return the new rating information",
      *      @OA\Parameter(
      *         name="recipient_id",
-     *         in="path",
+     *         in="query",
      *         description="recipient ID",
      *         required=true,
      *         @OA\Schema(
@@ -84,7 +84,7 @@ class RatingController extends Controller
      *     ),
      *      @OA\Parameter(
      *         name="category_id",
-     *         in="path",
+     *         in="query",
      *         description="category ID",
      *         required=true,
      *         @OA\Schema(
@@ -104,7 +104,7 @@ class RatingController extends Controller
      *     ),
      *      @OA\Parameter(
      *         name="rating",
-     *         in="path",
+     *         in="query",
      *         description="rating content",
      *         required=true,
      *         @OA\Schema(
@@ -239,7 +239,7 @@ class RatingController extends Controller
      *     ),
      *      @OA\Parameter(
      *         name="rating",
-     *         in="path",
+     *         in="query",
      *         description="rating content",
      *         required=true,
      *         @OA\Schema(

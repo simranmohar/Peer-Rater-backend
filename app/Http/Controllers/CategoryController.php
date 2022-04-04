@@ -301,7 +301,7 @@ class CategoryController extends Controller
      *             type="integer",
      *             format="int64"
      *         )
-     *     ),
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",

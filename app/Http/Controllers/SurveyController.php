@@ -8,25 +8,66 @@ use Illuminate\Http\Request;
 
 class SurveyController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *      path="/api/peer-groups/{peerGroup_id}/surveys/",
+     *      operationId="Survey.index",
+     *      tags={"Survey"},
+     *      summary="get the Survey group by peerGroup id",
+     *      description="Returns the Survey infomation as an array",
+     *      @OA\Parameter(
+     *         name="peerGroup_id",
+     *         in="path",
+     *         description="peerGroup ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *       @OA\Response(
+     *          response=200,
+     *          description="User not exsits! / Success, User is detached from peer group / Error, User does not exsit in peer group",
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @param  \App\Models\PeerGroup  $peerGroup
-     * @return \Illuminate\Http\Response
      */
     public function index(PeerGroup $peerGroup)
     {
         $surveys = $peerGroup->surveys()->get();
 
         return response()->json($surveys);
-    }
-
+    }    
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *      path="/api/peer-groups/{peerGroup_id}/surveys/",
+     *      operationId="Survey.store",
+     *      tags={"Survey"},
+     *      summary="create a Survey",
+     *      description="create a new Survey by accepting peerGroup_id",
+     *      @OA\Parameter(
+     *         name="peerGroup_id",
+     *         in="path",
+     *         description="peerGroup ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *       @OA\Response(
+     *          response=200,
+     *          description="Success operation",
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PeerGroup  $peerGroup
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request, PeerGroup $peerGroup)
     {
@@ -39,11 +80,41 @@ class SurveyController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *      path="/api/peer-groups/{peerGroup_id}/surveys/{survey_id}",
+     *      operationId="Survey.show",
+     *      tags={"Survey"},
+     *      summary="show a Survey infomation",
+     *      description="show a new Survey by accepting peerGroup_id and survey_id",
+     *      @OA\Parameter(
+     *         name="peerGroup_id",
+     *         in="path",
+     *         description="peerGroup ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *      @OA\Parameter(
+     *         name="survey_id",
+     *         in="path",
+     *         description="survey ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *       @OA\Response(
+     *          response=200,
+     *          description="Success operation",
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @param  \App\Models\PeerGroup  $peerGroup
-     * @param  \App\Models\Survey  $survey
-     * @return \Illuminate\Http\Response
      */
     public function show(PeerGroup $peerGroup, Survey $survey)
     {
@@ -51,12 +122,51 @@ class SurveyController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *      path="/api/peer-groups/{peerGroup_id}/surveys/{survey_id}",
+     *      operationId="Survey.update",
+     *      tags={"Survey"},
+     *      summary="update a Survey infomation",
+     *      description="update a new Survey by accepting peerGroup_id, survey_id and a new peer_group_id",
+     *      @OA\Parameter(
+     *         name="peerGroup_id",
+     *         in="path",
+     *         description="current peerGroup ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *      @OA\Parameter(
+     *         name="survey_id",
+     *         in="path",
+     *         description="survey ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *      @OA\Parameter(
+     *         name="peer_group_id",
+     *         in="query",
+     *         description="updated peerGroup ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *       @OA\Response(
+     *          response=200,
+     *          description="Success operation",
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PeerGroup  $peerGroup
-     * @param  \App\Models\Survey  $survey
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PeerGroup $peerGroup, Survey $survey)
     {
@@ -69,11 +179,41 @@ class SurveyController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *      path="/api/peer-groups/{peerGroup_id}/surveys/{survey_id}",
+     *      operationId="Survey.destroy",
+     *      tags={"Survey"},
+     *      summary="delete a Survey infomation",
+     *      description="delete a new Survey by accepting peerGroup_id, survey_id",
+     *      @OA\Parameter(
+     *         name="peerGroup_id",
+     *         in="path",
+     *         description="current peerGroup ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *      @OA\Parameter(
+     *         name="survey_id",
+     *         in="path",
+     *         description="survey ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *       @OA\Response(
+     *          response=200,
+     *          description="Success operation",
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
      *
-     * @param  \App\Models\PeerGroup  $peerGroup
-     * @param  \App\Models\Survey  $survey
-     * @return \Illuminate\Http\Response
      */
     public function destroy(PeerGroup $peerGroup, Survey $survey)
     {

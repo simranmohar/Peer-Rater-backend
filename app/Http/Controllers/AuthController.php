@@ -7,6 +7,63 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    /**
+     * @OA\Post(
+     *      path="/api/register",
+     *      operationId="register",
+     *      tags={"User"},
+     *      summary="register the user to the database",
+     *      description="Returns the authentication infomation",
+     *      @OA\Parameter(
+     *          name="email",
+     *          description="User email",
+     *          required=true,
+     *          example="user@admin.com",
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),   
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="User name",
+     *          example="PeerRater",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="password",
+     *          description="User password",
+     *          example="PeerRater",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="isInstructor",
+     *          description="User access level",
+     *          example=true,
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="boolean"
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
+     *
+     */
     public function register(Request $request)
     {
         $user = User::create([
@@ -20,7 +77,48 @@ class AuthController extends Controller
 
         return $this->respondWithToken($token);
     }
-
+    /**
+     * @OA\Post(
+     *      path="/api/login",
+     *      operationId="login",
+     *      tags={"User"},
+     *      summary="user login",
+     *      description="Returns the authentication infomation",
+     *      @OA\Parameter(
+     *          name="email",
+     *          description="User email",
+     *          required=true,
+     *          example="user@admin.com",
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="password",
+     *          description="User password",
+     *          example="PeerRater",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *          @OA\Property(property="access_token", type="object", example="eyJ0eXAiOiJK..."),
+     *          @OA\Property(property="token_type", type="object", example="bearer"),
+     *          @OA\Property(property="expires_in", type="object", example=3600),
+     *          )
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
+     *
+     */
     public function login()
     {
         $credentials = request(['email', 'password']);
@@ -31,13 +129,60 @@ class AuthController extends Controller
 
         return $this->respondWithToken($token);
     }
+    /**
+     * @OA\Post(
+     *      path="/api/logout",
+     *      operationId="logout",
+     *      tags={"User"},
+     *      summary="user logout",
+     *      description="Returns the authentication infomation",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *          @OA\Property(property="message", type="object", example="Successfully logged out"),)
+     *       ),
+     *       @OA\Response(
+     *          response=500, 
+     *          description="Invalid input"),
+     *     )
+     *
+     */
 
     public function logout()
     {
         auth()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
-    }
+    }    
+    /**
+     * @OA\Get(
+     *      path="/api/me",
+     *      operationId="me",
+     *      tags={"User"},
+     *      summary="Get login user infomation",
+     *      description="Returns the authentication infomation",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *          @OA\Property(property="id", type="object", example=11),
+     *          @OA\Property(property="name", type="object", example="tom"),
+     *          @OA\Property(property="email", type="object", example="tom@tom.ca"),
+     *          @OA\Property(property="email_verified_at", type="object", example=null),
+     *          @OA\Property(property="isInstructor", type="object", example="1"),
+     *          @OA\Property(property="created_at", type="object", example="2022-04-04T02:29:04.000000Z"),
+     *          @OA\Property(property="updated_at", type="object", example="2022-04-04T02:29:04.000000Z"),
+     *          )
+     *       ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal Error, please check server configuration",
+     *       ),
+     *     )
+     *
+     */
+  
 
     public function me()
     {

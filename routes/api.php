@@ -45,15 +45,17 @@ Route::resource('peer-groups.surveys', SurveyController::class);
 
 Route::resource('surveys.categories', CategoryController::class);
 
-Route::get('/ratings', [RatingController::class, 'index'])->name('ratings.index');
+// Route::get('/ratings', [RatingController::class, 'index'])->name('ratings.index');
 
-Route::post('/ratings', [RatingController::class, 'store'])->name('ratings.store');
+// Route::post('/ratings', [RatingController::class, 'store'])->name('ratings.store');
 
-Route::get('/ratings/{rating}', [RatingController::class, 'show'])->name('ratings.show');
+// Route::get('/ratings/{rating}', [RatingController::class, 'show'])->name('ratings.show');
 
-Route::put('/ratings/{rating}', [RatingController::class, 'update'])->name('ratings.update');
+// Route::put('/ratings/{rating}', [RatingController::class, 'update'])->name('ratings.update');
 
-Route::delete('/ratings/{rating}', [RatingController::class, 'destroy'])->name('ratings.destroy');
+// Route::delete('/ratings/{rating}', [RatingController::class, 'destroy'])->name('ratings.destroy');
+
+Route::resource('peer-groups.surveys.ratings', RatingController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

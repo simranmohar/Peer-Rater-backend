@@ -1,0 +1,1307 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Peer Rater Api Documentation",
+        "description": "Peer Rater Api Documentation",
+        "license": {
+            "name": "MIT License",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "register the user to the database",
+                "description": "Returns the authentication infomation",
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "User email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user@admin.com"
+                    },
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "User name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "PeerRater"
+                    },
+                    {
+                        "name": "password",
+                        "in": "path",
+                        "description": "User password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "PeerRater"
+                    },
+                    {
+                        "name": "isInstructor",
+                        "in": "path",
+                        "description": "User access level",
+                        "required": true,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "example": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "user login",
+                "description": "Returns the authentication infomation",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "User email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user@admin.com"
+                    },
+                    {
+                        "name": "password",
+                        "in": "path",
+                        "description": "User password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "PeerRater"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "object",
+                                            "example": "eyJ0eXAiOiJK..."
+                                        },
+                                        "token_type": {
+                                            "type": "object",
+                                            "example": "bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "object",
+                                            "example": 3600
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "user logout",
+                "description": "Returns the authentication infomation",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "object",
+                                            "example": "Successfully logged out"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/me": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get login user infomation",
+                "description": "Returns the authentication infomation",
+                "operationId": "me",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "object",
+                                            "example": 11
+                                        },
+                                        "name": {
+                                            "type": "object",
+                                            "example": "tom"
+                                        },
+                                        "email": {
+                                            "type": "object",
+                                            "example": "tom@tom.ca"
+                                        },
+                                        "email_verified_at": {
+                                            "type": "object",
+                                            "example": null
+                                        },
+                                        "isInstructor": {
+                                            "type": "object",
+                                            "example": "1"
+                                        },
+                                        "created_at": {
+                                            "type": "object",
+                                            "example": "2022-04-04T02:29:04.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "object",
+                                            "example": "2022-04-04T02:29:04.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error, please check server configuration"
+                    }
+                }
+            }
+        },
+        "/api/categories": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "get all categories infomation",
+                "description": "Returns an array contains all the categories infomation",
+                "operationId": "categories.index",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "get all categories infomation",
+                "description": "Returns an array contains all the categories infomation",
+                "operationId": "categories.store",
+                "parameters": [
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "Category description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "This is a description"
+                    },
+                    {
+                        "name": "peer_group_id",
+                        "in": "path",
+                        "description": "Category description",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 12
+                    },
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "Survey description",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 135
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/categories/{category}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "get a category infomation by ID",
+                "description": "Returns an array contains all the categories infomation",
+                "operationId": "categories.show",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "category ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 12
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "update a category description",
+                "description": "Returns the updated categories infomation",
+                "operationId": "categories.update",
+                "parameters": [
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "category description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "This is a description"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "delete a category by Category ID",
+                "description": "Return the Category infomation",
+                "operationId": "categories.destroy",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "delete category by category ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups": {
+            "get": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "get the peerGroups for the login user",
+                "description": "Returns the peer groups infomation",
+                "operationId": "index",
+                "parameters": [
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "peer group description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "New Peer Group 1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "create a new peerGroups and add the login user",
+                "description": "Returns the peer groups infomation",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "peer group description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "New Peer Group 1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups/{peerGroup}": {
+            "get": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "get the peerGroup infomation",
+                "description": "Returns the peer group infomation",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "peerGroup",
+                        "in": "path",
+                        "description": "get peerGroup information by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "update the peerGroup infomation",
+                "description": "Returns the peer group infomation",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "peerGroup",
+                        "in": "path",
+                        "description": "get peerGroup information by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "get peerGroup information by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "delete the peerGroup by peerGroup ID",
+                "description": "Returns the peer group infomation",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "peerGroup",
+                        "in": "path",
+                        "description": "get peerGroup information by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups/{peerGroup}/attach": {
+            "post": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "add current login user to a peerGroup",
+                "description": "Returns the peer group infomation",
+                "operationId": "attach",
+                "parameters": [
+                    {
+                        "name": "peerGroup",
+                        "in": "path",
+                        "description": "get peerGroup information by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups/{peerGroup}/detach": {
+            "post": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "remove current login user to a peerGroup",
+                "description": "Returns the peer group infomation",
+                "operationId": "detach",
+                "parameters": [
+                    {
+                        "name": "peerGroup",
+                        "in": "path",
+                        "description": "delete a peerGroup by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User not exsits! / Success, User is detached from peer group / Error, User does not exsit in peer group"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups/{peerGroup_id}/surveys/{survey_id}/ratings": {
+            "get": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "get the rating group infomation by peerGroup id and survey id",
+                "description": "Returns the rating infomation",
+                "operationId": "ratings.index",
+                "parameters": [
+                    {
+                        "name": "peerGroup_id",
+                        "in": "path",
+                        "description": "peerGroup ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "survey ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User not exsits! / Success, User is detached from peer group / Error, User does not exsit in peer group"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "create a rating",
+                "description": "create a new rating by accepting rating content, return the new rating information",
+                "operationId": "ratings.store",
+                "parameters": [
+                    {
+                        "name": "recipient_id",
+                        "in": "path",
+                        "description": "recipient ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "survey ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "category_id",
+                        "in": "path",
+                        "description": "category ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "peerGroup_id",
+                        "in": "path",
+                        "description": "peerGroup ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "rating",
+                        "in": "path",
+                        "description": "rating content",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups/{peerGroup_id}/surveys/{survey_id}/ratings/{rating_id}": {
+            "get": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "get a rating infomation",
+                "description": "(Not Confirm) Returns the rating infomation by rating id, survey id and peerGroup id",
+                "operationId": "ratings.show",
+                "parameters": [
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "survey ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "peerGroup_id",
+                        "in": "path",
+                        "description": "peerGroup ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "rating_id",
+                        "in": "path",
+                        "description": "This is the rating ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "update a rating",
+                "description": "Update the rating infomation by rating id, survey id and peerGroup id",
+                "operationId": "ratings.update",
+                "parameters": [
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "survey ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "peerGroup_id",
+                        "in": "path",
+                        "description": "peerGroup ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "rating_id",
+                        "in": "path",
+                        "description": "rating ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "rating",
+                        "in": "path",
+                        "description": "rating content",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "delete a rating",
+                "description": "delete the rating by rating id, survey id and peerGroup id",
+                "operationId": "ratings.destroy",
+                "parameters": [
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "survey ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "peerGroup_id",
+                        "in": "path",
+                        "description": "peerGroup ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "rating_id",
+                        "in": "path",
+                        "description": "rating ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups/{peerGroup_id}/surveys/": {
+            "get": {
+                "tags": [
+                    "Survey"
+                ],
+                "summary": "get the Survey group by peerGroup id",
+                "description": "Returns the Survey infomation as an array",
+                "operationId": "Survey.index",
+                "parameters": [
+                    {
+                        "name": "peerGroup_id",
+                        "in": "path",
+                        "description": "peerGroup ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User not exsits! / Success, User is detached from peer group / Error, User does not exsit in peer group"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Survey"
+                ],
+                "summary": "create a Survey",
+                "description": "create a new Survey by accepting peerGroup_id",
+                "operationId": "Survey.store",
+                "parameters": [
+                    {
+                        "name": "peerGroup_id",
+                        "in": "path",
+                        "description": "peerGroup ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups/{peerGroup_id}/surveys/{survey_id}": {
+            "get": {
+                "tags": [
+                    "Survey"
+                ],
+                "summary": "show a Survey infomation",
+                "description": "show a new Survey by accepting peerGroup_id and survey_id",
+                "operationId": "Survey.show",
+                "parameters": [
+                    {
+                        "name": "peerGroup_id",
+                        "in": "path",
+                        "description": "peerGroup ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "survey ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Survey"
+                ],
+                "summary": "update a Survey infomation",
+                "description": "update a new Survey by accepting peerGroup_id, survey_id and a new peer_group_id",
+                "operationId": "Survey.update",
+                "parameters": [
+                    {
+                        "name": "peerGroup_id",
+                        "in": "path",
+                        "description": "current peerGroup ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "survey ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "peer_group_id",
+                        "in": "path",
+                        "description": "updated peerGroup ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Survey"
+                ],
+                "summary": "delete a Survey infomation",
+                "description": "delete a new Survey by accepting peerGroup_id, survey_id",
+                "operationId": "Survey.destroy",
+                "parameters": [
+                    {
+                        "name": "peerGroup_id",
+                        "in": "path",
+                        "description": "current peerGroup ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "survey ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Category": {
+                "required": [
+                    "rating"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "description": {
+                        "type": "string",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "peer_group_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "survey_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "created_at": {
+                        "description": "Initial creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "User"
+                }
+            },
+            "PeerGroup": {
+                "required": [
+                    "desciption"
+                ],
+                "properties": {
+                    "peer_group_id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "description": {
+                        "type": "string",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "created_at": {
+                        "description": "Initial creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "users": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/User"
+                        },
+                        "collectionFormat": "multi"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "PeerGroup"
+                }
+            },
+            "Rating": {
+                "required": [
+                    "rating"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "writer_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "recipient_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "category_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "peer_group_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "survey_id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "rating": {
+                        "description": "User rating content",
+                        "type": "string",
+                        "format": "string",
+                        "readOnly": "false",
+                        "example": "100"
+                    },
+                    "created_at": {
+                        "description": "Initial creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "User"
+                }
+            },
+            "Survey": {
+                "required": [
+                    "peer_group_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "peer_group_id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "created_at": {
+                        "description": "Initial creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "User"
+                }
+            },
+            "User": {
+                "required": [
+                    "isInstructor"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 32,
+                        "example": "John"
+                    },
+                    "email": {
+                        "description": "User unique email address",
+                        "type": "string",
+                        "format": "email",
+                        "example": "user@gmail.com"
+                    },
+                    "password": {
+                        "description": "User password",
+                        "type": "string",
+                        "format": "password",
+                        "example": "password"
+                    },
+                    "isInstructor": {
+                        "description": "User is an instructor or not",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "created_at": {
+                        "description": "Initial creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "email_verified_at": {
+                        "description": "Datetime marker of verification status",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true",
+                        "example": "2019-02-25 12:59:20"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "User"
+                }
+            }
+        },
+        "securitySchemes": {
+            "Bearer": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "Bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "User",
+            "description": "Peer rater user"
+        },
+        {
+            "name": "Category",
+            "description": "Peer rater category"
+        },
+        {
+            "name": "PeerGroup",
+            "description": "Peer rater group"
+        },
+        {
+            "name": "Rating",
+            "description": "Peer rater user's rating"
+        },
+        {
+            "name": "Survey",
+            "description": "Peer rater surbey"
+        }
+    ]
+}

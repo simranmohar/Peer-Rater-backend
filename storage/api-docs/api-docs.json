@@ -1,0 +1,626 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "L5 OpenApi",
+        "description": "L5 Swagger OpenApi description",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "register the user to the database",
+                "description": "Returns the authentication infomation",
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "User email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user@admin.com"
+                    },
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "User name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "PeerRater"
+                    },
+                    {
+                        "name": "password",
+                        "in": "path",
+                        "description": "User password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "PeerRater"
+                    },
+                    {
+                        "name": "isInstructor",
+                        "in": "path",
+                        "description": "User access level",
+                        "required": true,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "example": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "user login",
+                "description": "Returns the authentication infomation",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "User email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user@admin.com"
+                    },
+                    {
+                        "name": "password",
+                        "in": "path",
+                        "description": "User password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "PeerRater"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "object",
+                                            "example": "eyJ0eXAiOiJK..."
+                                        },
+                                        "token_type": {
+                                            "type": "object",
+                                            "example": "bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "object",
+                                            "example": 3600
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "user logout",
+                "description": "Returns the authentication infomation",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "object",
+                                            "example": "Successfully logged out"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/me": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get login user infomation",
+                "description": "Returns the authentication infomation",
+                "operationId": "me",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "object",
+                                            "example": 11
+                                        },
+                                        "name": {
+                                            "type": "object",
+                                            "example": "tom"
+                                        },
+                                        "email": {
+                                            "type": "object",
+                                            "example": "tom@tom.ca"
+                                        },
+                                        "email_verified_at": {
+                                            "type": "object",
+                                            "example": null
+                                        },
+                                        "isInstructor": {
+                                            "type": "object",
+                                            "example": "1"
+                                        },
+                                        "created_at": {
+                                            "type": "object",
+                                            "example": "2022-04-04T02:29:04.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "object",
+                                            "example": "2022-04-04T02:29:04.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error, please check server configuration"
+                    }
+                }
+            }
+        },
+        "/api/categories": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "get all categories infomation",
+                "description": "Returns an array contains all the categories infomation",
+                "operationId": "categories.index",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "get all categories infomation",
+                "description": "Returns an array contains all the categories infomation",
+                "operationId": "categories.store",
+                "parameters": [
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "Category description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "This is a description"
+                    },
+                    {
+                        "name": "peer_group_id",
+                        "in": "path",
+                        "description": "Category description",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 12
+                    },
+                    {
+                        "name": "survey_id",
+                        "in": "path",
+                        "description": "Survey description",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 135
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/categories/{category}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "get a category infomation by ID",
+                "description": "Returns an array contains all the categories infomation",
+                "operationId": "categories.show",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "category ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 12
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "update a category description",
+                "description": "Returns the updated categories infomation",
+                "operationId": "categories.update",
+                "parameters": [
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "category description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "This is a description"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "delete the Category by Category ID",
+                "description": "Return the Category infomation",
+                "operationId": "categories.destroy",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "delete category by category ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups": {
+            "get": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "get the peerGroups for the login user",
+                "description": "Returns the peer groups infomation",
+                "operationId": "index",
+                "parameters": [
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "peer group description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "New Peer Group 1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "create a new peerGroups and add the login user",
+                "description": "Returns the peer groups infomation",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "peer group description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "New Peer Group 1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups/{peerGroup}": {
+            "get": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "get the peerGroup infomation",
+                "description": "Returns the peer group infomation",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "peerGroup",
+                        "in": "path",
+                        "description": "get peerGroup information by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "update the peerGroup infomation",
+                "description": "Returns the peer group infomation",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "peerGroup",
+                        "in": "path",
+                        "description": "get peerGroup information by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "get peerGroup information by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "delete the peerGroup by peerGroup ID",
+                "description": "Returns the peer group infomation",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "peerGroup",
+                        "in": "path",
+                        "description": "get peerGroup information by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups/{peerGroup}/attach": {
+            "post": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "add current login user to a peerGroup",
+                "description": "Returns the peer group infomation",
+                "operationId": "attach",
+                "parameters": [
+                    {
+                        "name": "peerGroup",
+                        "in": "path",
+                        "description": "get peerGroup information by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/peer-groups/{peerGroup}/detach": {
+            "post": {
+                "tags": [
+                    "PeerGroup"
+                ],
+                "summary": "remove current login user to a peerGroup",
+                "description": "Returns the peer group infomation",
+                "operationId": "detach",
+                "parameters": [
+                    {
+                        "name": "peerGroup",
+                        "in": "path",
+                        "description": "get peerGroup information by ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User not exsits! / Success, User is detached from peer group / Error, User does not exsit in peer group"
+                    },
+                    "500": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "title": "User",
+                "description": "Project model",
+                "xml": {
+                    "name": "Project"
+                }
+            }
+        },
+        "securitySchemes": {
+            "Bearer": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "Bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "User",
+            "description": "Peer rater user"
+        },
+        {
+            "name": "Category",
+            "description": "Peer rater category"
+        },
+        {
+            "name": "PeerGroup",
+            "description": "Peer rater group"
+        },
+        {
+            "name": "Rating",
+            "description": "Peer rater user's rating"
+        },
+        {
+            "name": "Survey",
+            "description": "Peer rater surbey"
+        }
+    ]
+}

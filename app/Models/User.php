@@ -10,6 +10,15 @@ use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use App\Models\PeerGroup;
 
+/**
+ * @OA\Schema(
+ *     title="User",
+ *     description="Project model",
+ *     @OA\Xml(
+ *         name="Project"
+ *     )
+ * )
+ */
 class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;

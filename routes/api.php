@@ -43,7 +43,7 @@ Route::post('/peer-groups/{peerGroup}/detach', [PeerGroupController::class, 'det
 
 Route::resource('peer-groups.surveys', SurveyController::class);
 
-Route::resource('surveys.categories', CategoryController::class);
+Route::resource('peer-groups.surveys.categories', CategoryController::class);
 
 // Route::get('/ratings', [RatingController::class, 'index'])->name('ratings.index');
 

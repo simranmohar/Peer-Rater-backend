@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Survey;
+use App\Models\PeerGroup;
 
 class CategoryController extends Controller
 {
@@ -26,7 +27,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Survey $survey)
+    public function index(PeerGroup $peerGroup, Survey $survey)
     {
         $categories = $survey->categories()->get();
 
@@ -92,9 +93,20 @@ class CategoryController extends Controller
 //         "id": 12
 //     }
 // }
-    public function store(Request $request, Survey $survey)
+    public function store(Request $request, PeerGroup $peerGroup, Survey $survey)
     {
-        $category = $survey->categories()->create($request->all());
+        $request->validate([
+            'peer_group_id' => 'required',
+            'survey_id' => 'required',
+            'description' => 'required'
+        ]);
+
+        $category = new Category;
+        $category->peer_group_id = $peerGroup->id;
+        $category->survey_id = $survey->id;
+        $category->description = $request->input('description');
+        
+        $category->save();
 
         return response()->json([
             'message' => 'Great success! New category created',
@@ -132,7 +144,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Survey $survey, Category $category)
+    public function show(PeerGroup $peerGroup, Survey $survey, Category $category)
     {
         return $category;
     }
@@ -178,8 +190,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Survey $survey, Category $category)
+    public function update(Request $request, PeerGroup $peerGroup, Survey $survey, Category $category)
     {
+        $request->validate([
+            'description' => 'nullable',
+        ]);
 
         $category->update($request->all());
         
@@ -221,7 +236,7 @@ class CategoryController extends Controller
      *     )
      *
      */
-    public function destroy(Survey $survey, Category $category)
+    public function destroy(PeerGroup $peerGroup, Survey $survey, Category $category)
     {
         $category->delete();
 

@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Survey;
+use App\Models\PeerGroup;
 
 class CategoryController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/api/categories",
-     *      operationId="categories.index",
+     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories",
+     *      operationId="peer-groups.surveys.categories.index",
      *      tags={"Category"},
      *      summary="get all categories infomation",
      *      description="Returns an array contains all the categories infomation",
@@ -24,17 +25,18 @@ class CategoryController extends Controller
      *          description="Invalid input"),
      *     )
      *
-     */   
-    public function index()
+     * @return \Illuminate\Http\Response
+     */
+    public function index(PeerGroup $peerGroup, Survey $survey)
     {
-        $categories = Category::all();
+        $categories = $survey->categories()->get();
 
         return response()->json($categories);
     }
     /**
      * @OA\Post(
-     *      path="/api/categories",
-     *      operationId="categories.store",
+     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories",
+     *      operationId="peer-groups.surveys.categories.store",
      *      tags={"Category"},
      *      summary="get all categories infomation",
      *      description="Returns an array contains all the categories infomation",
@@ -46,28 +48,6 @@ class CategoryController extends Controller
      *          in="query",
      *          @OA\Schema(
      *              type="string"
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="peer_group_id",
-     *          description="Category description",
-     *          required=true,
-     *          example=12,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="integer",
-     *              format="int64",
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="survey_id",
-     *          description="Survey description",
-     *          required=true,
-     *          example=135,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="integer",
-     *              format="int64",
      *          ),
      *      ),
      *      @OA\Response(
@@ -91,17 +71,17 @@ class CategoryController extends Controller
 //         "id": 12
 //     }
 // }
-    public function store(Request $request)
+    public function store(Request $request, PeerGroup $peerGroup, Survey $survey)
     {
         $request->validate([
             'description' => 'required'
         ]);
 
         $category = new Category;
-        $survey = Survey::with('categories')->where('id', $request->input('survey_id'))->get();
-        $category->peer_group_id = $request->input('peer_group_id');
-        $category->survey_id = $request->input('survey_id');
+        $category->peer_group_id = $peerGroup->id;
+        $category->survey_id = $survey->id;
         $category->description = $request->input('description');
+        
         $category->save();
 
         return response()->json([
@@ -112,8 +92,8 @@ class CategoryController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/categories/{category}",
-     *      operationId="categories.show",
+     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories/{category}",
+     *      operationId="peer-groups.surveys.categories.show",
      *      tags={"Category"},
      *      summary="get a category infomation by ID",
      *      description="Returns an array contains all the categories infomation",
@@ -137,16 +117,18 @@ class CategoryController extends Controller
      *          description="Invalid input"),
      *     )
      *
-     */   
-    public function show(Category $category)
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function show(PeerGroup $peerGroup, Survey $survey, Category $category)
     {
         return $category;
     }
 
     /**
      * @OA\Put(
-     *      path="/api/categories/{category}",
-     *      operationId="categories.update",
+     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories/{category}",
+     *      operationId="peer-groups.surveys.categories.update",
      *      tags={"Category"},
      *      summary="update a category description",
      *      description="Returns the updated categories infomation",
@@ -180,11 +162,14 @@ class CategoryController extends Controller
      *          description="Invalid input"),
      *     )
      *
-     */   
-    public function update(Request $request, Category $category)
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, PeerGroup $peerGroup, Survey $survey, Category $category)
     {
         $request->validate([
-           'description' => 'nullable'
+            'description' => 'nullable',
         ]);
 
         $category->update($request->all());
@@ -202,8 +187,8 @@ class CategoryController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/categories/{category}",
-     *      operationId="categories.destroy",
+     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories/{category}",
+     *      operationId="peer-groups.surveys.categories.destroy",
      *      tags={"Category"},
      *      summary="delete a category by Category ID",
      *      description="Return the Category infomation",
@@ -227,7 +212,7 @@ class CategoryController extends Controller
      *     )
      *
      */
-    public function destroy(Category $category)
+    public function destroy(PeerGroup $peerGroup, Survey $survey, Category $category)
     {
         $category->delete();
 

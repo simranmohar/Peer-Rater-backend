@@ -96,8 +96,6 @@ class CategoryController extends Controller
     public function store(Request $request, PeerGroup $peerGroup, Survey $survey)
     {
         $request->validate([
-            'peer_group_id' => 'required',
-            'survey_id' => 'required',
             'description' => 'required'
         ]);
 

@@ -11,8 +11,8 @@ class CategoryController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/api/categories",
-     *      operationId="categories.index",
+     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories",
+     *      operationId="peer-groups.surveys.categories.index",
      *      tags={"Category"},
      *      summary="get all categories infomation",
      *      description="Returns an array contains all the categories infomation",
@@ -35,8 +35,8 @@ class CategoryController extends Controller
     }
     /**
      * @OA\Post(
-     *      path="/api/categories",
-     *      operationId="categories.store",
+     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories",
+     *      operationId="peer-groups.surveys.categories.store",
      *      tags={"Category"},
      *      summary="get all categories infomation",
      *      description="Returns an array contains all the categories infomation",
@@ -48,28 +48,6 @@ class CategoryController extends Controller
      *          in="query",
      *          @OA\Schema(
      *              type="string"
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="peer_group_id",
-     *          description="Category description",
-     *          required=true,
-     *          example=12,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="integer",
-     *              format="int64",
-     *          ),
-     *      ),
-     *      @OA\Parameter(
-     *          name="survey_id",
-     *          description="Survey description",
-     *          required=true,
-     *          example=135,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="integer",
-     *              format="int64",
      *          ),
      *      ),
      *      @OA\Response(
@@ -114,8 +92,8 @@ class CategoryController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/categories/{category}",
-     *      operationId="categories.show",
+     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories/{category}",
+     *      operationId="peer-groups.surveys.categories.show",
      *      tags={"Category"},
      *      summary="get a category infomation by ID",
      *      description="Returns an array contains all the categories infomation",
@@ -149,8 +127,8 @@ class CategoryController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/api/categories/{category}",
-     *      operationId="categories.update",
+     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories/{category}",
+     *      operationId="peer-groups.surveys.categories.update",
      *      tags={"Category"},
      *      summary="update a category description",
      *      description="Returns the updated categories infomation",
@@ -209,8 +187,8 @@ class CategoryController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/categories/{category}",
-     *      operationId="categories.destroy",
+     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories/{category}",
+     *      operationId="peer-groups.surveys.categories.destroy",
      *      tags={"Category"},
      *      summary="delete a category by Category ID",
      *      description="Return the Category infomation",

@@ -16,6 +16,26 @@ class CategoryController extends Controller
      *      tags={"Category"},
      *      summary="get the category group information by peerGroup id and survey id",
      *      description="Returns an array contains all the categories infomation",
+     *      @OA\Parameter(
+     *         name="peerGroup_id",
+     *         in="path",
+     *         description="peerGroup ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *      ),
+     *      @OA\Parameter(
+     *         name="survey_id",
+     *         in="path",
+     *         description="survey ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -40,6 +60,26 @@ class CategoryController extends Controller
      *      tags={"Category"},
      *      summary="create a new category",
      *      description="Returns an array contains all the categories infomation",
+     *      @OA\Parameter(
+     *         name="peerGroup_id",
+     *         in="path",
+     *         description="peerGroup ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *      ),
+     *      @OA\Parameter(
+     *         name="survey_id",
+     *         in="path",
+     *         description="survey ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *      ),
      *      @OA\Parameter(
      *          name="description",
      *          description="Category description",
@@ -108,6 +148,26 @@ class CategoryController extends Controller
      *              format="int64",
      *          ),
      *      ),
+     *      @OA\Parameter(
+     *         name="peerGroup_id",
+     *         in="path",
+     *         description="peerGroup ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *      ),
+     *      @OA\Parameter(
+     *         name="survey_id",
+     *         in="path",
+     *         description="survey ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -132,6 +192,26 @@ class CategoryController extends Controller
      *      tags={"Category"},
      *      summary="update a category description",
      *      description="Returns the updated categories infomation",
+     *      @OA\Parameter(
+     *         name="peerGroup_id",
+     *         in="path",
+     *         description="peerGroup ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *      ),
+     *      @OA\Parameter(
+     *         name="survey_id",
+     *         in="path",
+     *         description="survey ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *      ),
      *      @OA\Parameter(
      *          name="category",
      *          description="category ID",
@@ -192,6 +272,26 @@ class CategoryController extends Controller
      *      tags={"Category"},
      *      summary="delete a category by Category ID",
      *      description="Return the Category infomation",
+     *      @OA\Parameter(
+     *         name="peerGroup_id",
+     *         in="path",
+     *         description="peerGroup ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *      ),
+     *      @OA\Parameter(
+     *         name="survey_id",
+     *         in="path",
+     *         description="survey ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *      ),
      *      @OA\Parameter(
      *         name="category",
      *         in="path",

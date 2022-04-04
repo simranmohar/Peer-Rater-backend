@@ -9,8 +9,12 @@ use Illuminate\Routing\Controller as BaseController;
 /**
 * @OA\Info(
 * version="1.0.0",
-* title="L5 OpenApi",
-* description="L5 Swagger OpenApi description"
+* title="Peer Rater Api Documentation",
+* description="Peer Rater Api Documentation",
+* @OA\License(
+* name="MIT License",
+* url="https://opensource.org/licenses/MIT"
+* )
 * )
 * @OA\Servers(
 * url:"http://praterlaravel.azurewebsites.net/api"

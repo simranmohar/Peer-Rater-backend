@@ -24,6 +24,14 @@
       margin:0;
       background: #fafafa;
     }
+
+    .topbar{
+        display:none;
+    }
+    
+    #swagger-ui{
+        margin: 4rem;
+    }
     </style>
 </head>
 

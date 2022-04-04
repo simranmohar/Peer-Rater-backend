@@ -14,7 +14,7 @@ class CategoryController extends Controller
      *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories",
      *      operationId="peer-groups.surveys.categories.index",
      *      tags={"Category"},
-     *      summary="get all categories infomation",
+     *      summary="get the category group information by peerGroup id and survey id",
      *      description="Returns an array contains all the categories infomation",
      *      @OA\Response(
      *          response=200,
@@ -38,7 +38,7 @@ class CategoryController extends Controller
      *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories",
      *      operationId="peer-groups.surveys.categories.store",
      *      tags={"Category"},
-     *      summary="get all categories infomation",
+     *      summary="create a new category",
      *      description="Returns an array contains all the categories infomation",
      *      @OA\Parameter(
      *          name="description",

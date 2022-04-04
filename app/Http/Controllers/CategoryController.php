@@ -13,9 +13,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Survey $survey)
     {
-        $categories = Category::all();
+        $categories = $survey->categories()->get();
 
         return response()->json($categories);
     }
@@ -26,18 +26,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Survey $survey)
     {
-        $request->validate([
-            'description' => 'required'
-        ]);
-
-        $category = new Category;
-        $survey = Survey::with('categories')->where('id', $request->input('survey_id'))->get();
-        $category->peer_group_id = $request->input('peer_group_id');
-        $category->survey_id = $request->input('survey_id');
-        $category->description = $request->input('description');
-        $category->save();
+        $category = $survey->categories()->create($request->all());
 
         return response()->json([
             'message' => 'Great success! New category created',
@@ -51,7 +42,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Survey $survey, Category $category)
     {
         return $category;
     }
@@ -63,7 +54,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Survey $survey, Category $category)
     {
         $request->validate([
            'description' => 'nullable'
@@ -88,7 +79,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $categorys
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Survey $survey, Category $category)
     {
         $category->delete();
 

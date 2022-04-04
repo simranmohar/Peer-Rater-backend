@@ -586,7 +586,7 @@
                 "tags": [
                     "Rating"
                 ],
-                "summary": "get the rating by peerGroup id and survey id",
+                "summary": "get the rating group infomation by peerGroup id and survey id",
                 "description": "Returns the rating infomation",
                 "operationId": "ratings.index",
                 "parameters": [
@@ -693,7 +693,7 @@
                 "tags": [
                     "Rating"
                 ],
-                "summary": "create a rating",
+                "summary": "get a rating infomation",
                 "description": "(Not Confirm) Returns the rating infomation by rating id, survey id and peerGroup id",
                 "operationId": "ratings.show",
                 "parameters": [
@@ -1030,11 +1030,242 @@
     },
     "components": {
         "schemas": {
-            "User": {
-                "title": "User",
-                "description": "Project model",
+            "Category": {
+                "required": [
+                    "rating"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "description": {
+                        "type": "string",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "peer_group_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "survey_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "created_at": {
+                        "description": "Initial creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    }
+                },
+                "type": "object",
                 "xml": {
-                    "name": "Project"
+                    "name": "User"
+                }
+            },
+            "PeerGroup": {
+                "required": [
+                    "desciption"
+                ],
+                "properties": {
+                    "peer_group_id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "description": {
+                        "type": "string",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "created_at": {
+                        "description": "Initial creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "users": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/User"
+                        },
+                        "collectionFormat": "multi"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "PeerGroup"
+                }
+            },
+            "Rating": {
+                "required": [
+                    "rating"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "writer_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "recipient_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "category_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "peer_group_id": {
+                        "type": "integer",
+                        "readOnly": "false",
+                        "example": "1"
+                    },
+                    "survey_id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "rating": {
+                        "description": "User rating content",
+                        "type": "string",
+                        "format": "string",
+                        "readOnly": "false",
+                        "example": "100"
+                    },
+                    "created_at": {
+                        "description": "Initial creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "User"
+                }
+            },
+            "Survey": {
+                "required": [
+                    "peer_group_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "peer_group_id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "created_at": {
+                        "description": "Initial creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "User"
+                }
+            },
+            "User": {
+                "required": [
+                    "isInstructor"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 32,
+                        "example": "John"
+                    },
+                    "email": {
+                        "description": "User unique email address",
+                        "type": "string",
+                        "format": "email",
+                        "example": "user@gmail.com"
+                    },
+                    "password": {
+                        "description": "User password",
+                        "type": "string",
+                        "format": "password",
+                        "example": "password"
+                    },
+                    "isInstructor": {
+                        "description": "User is an instructor or not",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "created_at": {
+                        "description": "Initial creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true"
+                    },
+                    "email_verified_at": {
+                        "description": "Datetime marker of verification status",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": "true",
+                        "example": "2019-02-25 12:59:20"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "User"
                 }
             }
         },

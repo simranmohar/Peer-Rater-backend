@@ -11,23 +11,32 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use App\Models\PeerGroup;
 
 /**
+ *
  * @OA\Schema(
- *     title="User",
- *     description="Project model",
- *     @OA\Xml(
- *         name="Project"
- *     )
+ *
+ * required={"email"},
+ * required={"password"},
+ * required={"name"},
+ * required={"isInstructor"},
+ * @OA\Xml(name="User"),
+ *
+ * @OA\Property(property="id", type="integer", readOnly="true", example="1"),
+ * @OA\Property(property="name", type="string", maxLength=32, example="John"),
+ * @OA\Property(property="email", type="string", format="email", description="User unique email address", example="user@gmail.com"),
+ * @OA\Property(property="password", type="string", format="password",description="User password", example="password"),
+ * @OA\Property(property="isInstructor", type="boolean",  description="User is an instructor or not", example=true),
+ * @OA\Property(property="created_at", type="string", format="date-time", description="Initial creation timestamp", readOnly="true"),
+ * @OA\Property(property="updated_at", type="string", format="date-time", description="Last update timestamp", readOnly="true"),
+ * @OA\Property(property="email_verified_at", type="string", readOnly="true", format="date-time", description="Datetime marker of verification status", example="2019-02-25 12:59:20"),
  * )
+ *
+ * Class User
+ *
  */
 class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',

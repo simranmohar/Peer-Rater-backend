@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories",
+     *      path="/api/peer-groups/{peerGroup_id}/surveys/{survey_id}/categories",
      *      operationId="peer-groups.surveys.categories.index",
      *      tags={"Category"},
      *      summary="get the category group information by peerGroup id and survey id",
@@ -19,7 +19,7 @@ class CategoryController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -29,7 +29,7 @@ class CategoryController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -55,7 +55,7 @@ class CategoryController extends Controller
     }
     /**
      * @OA\Post(
-     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories",
+     *      path="/api/peer-groups/{peerGroup_id}/surveys/{survey_id}/categories",
      *      operationId="peer-groups.surveys.categories.store",
      *      tags={"Category"},
      *      summary="create a new category",
@@ -63,7 +63,7 @@ class CategoryController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -73,7 +73,7 @@ class CategoryController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -132,14 +132,14 @@ class CategoryController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories/{category}",
+     *      path="/api/peer-groups/{peerGroup_id}/surveys/{survey_id}/categories/{category_id}",
      *      operationId="peer-groups.surveys.categories.show",
      *      tags={"Category"},
      *      summary="get a category infomation by ID",
      *      description="Returns an array contains all the categories infomation",
      *      @OA\Parameter(
-     *          name="category",
-     *          description="category ID",
+     *          name="category_id",
+     *          description="category ID in path",
      *          required=true,
      *          example=12,
      *          in="path",
@@ -151,7 +151,7 @@ class CategoryController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -161,7 +161,7 @@ class CategoryController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -187,7 +187,7 @@ class CategoryController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories/{category}",
+     *      path="/api/peer-groups/{peerGroup_id}/surveys/{survey_id}/categories/{category_id}",
      *      operationId="peer-groups.surveys.categories.update",
      *      tags={"Category"},
      *      summary="update a category description",
@@ -195,7 +195,7 @@ class CategoryController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -205,7 +205,7 @@ class CategoryController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -213,8 +213,8 @@ class CategoryController extends Controller
      *         )
      *      ),
      *      @OA\Parameter(
-     *          name="category",
-     *          description="category ID",
+     *          name="category_id",
+     *          description="category ID in path",
      *          required=true,
      *          example=12,
      *          in="path",
@@ -267,7 +267,7 @@ class CategoryController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/peer-groups/{peer-group}/surveys/{survey}/categories/{category}",
+     *      path="/api/peer-groups/{peerGroup_id}/surveys/{survey_id}/categories/{category_id}",
      *      operationId="peer-groups.surveys.categories.destroy",
      *      tags={"Category"},
      *      summary="delete a category by Category ID",
@@ -275,7 +275,7 @@ class CategoryController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -285,7 +285,7 @@ class CategoryController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -293,9 +293,9 @@ class CategoryController extends Controller
      *         )
      *      ),
      *      @OA\Parameter(
-     *         name="category",
+     *         name="category_id",
      *         in="path",
-     *         description="delete category by category ID",
+     *         description="category ID to delete in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",

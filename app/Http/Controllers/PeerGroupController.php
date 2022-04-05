@@ -16,7 +16,7 @@ class PeerGroupController extends Controller
      * operationId="index",
      *      tags={"PeerGroup"},
      *      summary="get the peerGroups for the login user",
-     *      description="Returns the peer groups infomation",
+     *      description="Return a peer-group array",
      *      @OA\Parameter(
      *          name="description",
      *          description="peer group description",
@@ -50,8 +50,8 @@ class PeerGroupController extends Controller
      *      path="/api/peer-groups",
      *      operationId="store",
      *      tags={"PeerGroup"},
-     *      summary="create a new peerGroups and add the login user",
-     *      description="Returns the peer groups infomation",
+     *      summary="create a new peerGroup and add the current login user",
+     *      description="Return a peer-group array",
      *      @OA\Parameter(
      *          name="description",
      *          description="peer group description",
@@ -108,15 +108,15 @@ class PeerGroupController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/peer-groups/{peerGroup}",
+     *      path="/api/peer-groups/{peerGroup_id}",
      *      operationId="show",
      *      tags={"PeerGroup"},
-     *      summary="get the peerGroup infomation",
+     *      summary="get the peerGroup infomation by the id in the path",
      *      description="Returns the peer group infomation",
      *      @OA\Parameter(
-     *         name="peerGroup",
+     *         name="peerGroup_id",
      *         in="path",
-     *         description="get peerGroup information by ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -140,15 +140,15 @@ class PeerGroupController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/api/peer-groups/{peerGroup}",
+     *      path="/api/peer-groups/{peerGroup_id}",
      *      operationId="update",
      *      tags={"PeerGroup"},
      *      summary="update the peerGroup infomation",
-     *      description="Returns the peer group infomation",
+     *      description="Return the updated peer-group infomation",
      *      @OA\Parameter(
-     *         name="peerGroup",
+     *         name="peerGroup_id",
      *         in="path",
-     *         description="get peerGroup information by ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -158,7 +158,7 @@ class PeerGroupController extends Controller
      *      @OA\Parameter(
      *         name="description",
      *         in="query",
-     *         description="get peerGroup information by ID",
+     *         description="updated peerGroup desciption",
      *         required=true,
      *         @OA\Schema(
      *             type="string",
@@ -190,15 +190,15 @@ class PeerGroupController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/peer-groups/{peerGroup}",
+     *      path="/api/peer-groups/{peerGroup_id}",
      *      operationId="destroy",
      *      tags={"PeerGroup"},
      *      summary="delete the peerGroup by peerGroup ID",
      *      description="Returns the peer group infomation",
      *      @OA\Parameter(
-     *         name="peerGroup",
+     *         name="peerGroup_id",
      *         in="path",
-     *         description="get peerGroup information by ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -230,15 +230,15 @@ class PeerGroupController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/peer-groups/{peerGroup}/attach",
+     *      path="/api/peer-groups/{peerGroup_id}/attach",
      *      operationId="attach",
      *      tags={"PeerGroup"},
-     *      summary="add current login user to a peerGroup",
+     *      summary="add a user to a peerGroup by user ID",
      *      description="Returns the peer group infomation",
      *      @OA\Parameter(
-     *         name="peerGroup",
+     *         name="peerGroup_id",
      *         in="path",
-     *         description="get peerGroup information by ID",
+     *         description="peer-group ID for attachingh the user in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -248,7 +248,7 @@ class PeerGroupController extends Controller
      *      @OA\Parameter(
      *         name="user_id",
      *         in="query",
-     *         description="attach user ID",
+     *         description="user ID to attach",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -294,15 +294,15 @@ class PeerGroupController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/peer-groups/{peerGroup}/detach",
+     *      path="/api/peer-groups/{peerGroup_id}/detach",
      *      operationId="detach",
      *      tags={"PeerGroup"},
-     *      summary="remove current login user to a peerGroup",
+     *      summary="remove a user from a peerGroup by user ID",
      *      description="Returns the peer group infomation",
      *      @OA\Parameter(
-     *         name="peerGroup",
+     *         name="peerGroup_id",
      *         in="path",
-     *         description="delete a peerGroup by ID",
+     *         description="peer-group ID for detaching the user in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -312,7 +312,7 @@ class PeerGroupController extends Controller
      *      @OA\Parameter(
      *         name="user_id",
      *         in="query",
-     *         description="detach user ID",
+     *         description="user ID to detach",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",

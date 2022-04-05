@@ -19,7 +19,7 @@ class SurveyController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -28,7 +28,7 @@ class SurveyController extends Controller
      *     ),
      *       @OA\Response(
      *          response=200,
-     *          description="User not exsits! / Success, User is detached from peer group / Error, User does not exsit in peer group",
+     *          description="successful operation",
      *       ),
      *       @OA\Response(
      *          response=500, 
@@ -52,7 +52,7 @@ class SurveyController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -99,7 +99,7 @@ class SurveyController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -131,7 +131,7 @@ class SurveyController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="current peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -141,7 +141,7 @@ class SurveyController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -188,7 +188,7 @@ class SurveyController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="current peerGroup ID",
+     *         description="current peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -198,7 +198,7 @@ class SurveyController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",

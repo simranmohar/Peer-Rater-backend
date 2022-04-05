@@ -21,7 +21,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -31,7 +31,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -40,7 +40,7 @@ class RatingController extends Controller
      *     ),
      *       @OA\Response(
      *          response=200,
-     *          description="User not exsits! / Success, User is detached from peer group / Error, User does not exsit in peer group",
+     *          description="successful operation",
      *       ),
      *       @OA\Response(
      *          response=500, 
@@ -75,7 +75,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -95,7 +95,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -157,7 +157,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -167,7 +167,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -177,7 +177,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="rating_id",
      *         in="path",
-     *         description="This is the rating ID",
+     *         description="This is the rating ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -210,7 +210,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID  in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -220,7 +220,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -230,7 +230,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="rating_id",
      *         in="path",
-     *         description="rating ID",
+     *         description="rating ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -285,7 +285,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="survey_id",
      *         in="path",
-     *         description="survey ID",
+     *         description="survey ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -295,7 +295,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="peerGroup_id",
      *         in="path",
-     *         description="peerGroup ID",
+     *         description="peerGroup ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
@@ -305,7 +305,7 @@ class RatingController extends Controller
      *      @OA\Parameter(
      *         name="rating_id",
      *         in="path",
-     *         description="rating ID",
+     *         description="rating ID in path",
      *         required=true,
      *         @OA\Schema(
      *             type="integer",

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -23,7 +24,7 @@ class AuthController extends Controller
      *          @OA\Schema(
      *              type="string"
      *          ),
-     *      ),   
+     *      ),
      *      @OA\Parameter(
      *          name="name",
      *          description="User name",
@@ -59,7 +60,7 @@ class AuthController extends Controller
      *          description="successful operation"
      *       ),
      *       @OA\Response(
-     *          response=500, 
+     *          response=500,
      *          description="Invalid input"),
      *     )
      *
@@ -114,7 +115,7 @@ class AuthController extends Controller
      *          )
      *       ),
      *       @OA\Response(
-     *          response=500, 
+     *          response=500,
      *          description="Invalid input"),
      *     )
      *
@@ -143,7 +144,7 @@ class AuthController extends Controller
      *          @OA\Property(property="message", type="object", example="Successfully logged out"),)
      *       ),
      *       @OA\Response(
-     *          response=500, 
+     *          response=500,
      *          description="Invalid input"),
      *     )
      *
@@ -154,7 +155,7 @@ class AuthController extends Controller
         auth()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
-    }    
+    }
     /**
      * @OA\Get(
      *      path="/api/me",
@@ -182,12 +183,31 @@ class AuthController extends Controller
      *     )
      *
      */
-  
+
 
     public function me()
     {
         return response()->json(auth()->user());
     }
+
+
+    public function users()
+     {
+        $user = auth()->user();
+
+        if($user->isInstructor == 1)
+        {
+
+         $users = DB::table('users')->select('id', 'name', 'email')->get();
+          return response()->json($users);
+
+        }else{
+          return response()->json(['error' => 'Unauthorized. Students cant access this page.'], 401);
+        }
+
+     }
+
+
 
     protected function respondWithToken($token)
     {

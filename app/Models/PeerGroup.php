@@ -36,7 +36,7 @@ class PeerGroup extends Model
 {
     use HasFactory;
 
-    protected $with = ['users'];
+    protected $with = ['users', 'surveys'];
 
     public function users()
     {

@@ -32,6 +32,8 @@ class Survey extends Model
         'peer_group_id'
     ];
 
+    protected $with = ['categories', 'ratings'];
+
     public function peerGroup()
     {
         return $this->belongsTo(PeerGroup::class);
